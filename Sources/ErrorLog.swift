@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-private func doOnMainThread(async: Bool = true, execute: @autoclosure(escaping) () -> Void) -> Bool {
+private func doOnMainThread(async: Bool = true, execute: @autoclosure @escaping  () -> Void) -> Bool {
     guard Thread.isMainThread else {
         if async {
             DispatchQueue.main.async(execute: execute)
@@ -24,7 +24,7 @@ private func doOnMainThread(async: Bool = true, execute: @autoclosure(escaping) 
 }
 
 
-private func doOnMainThread<T>(execute: @noescape () -> T) -> T {
+private func doOnMainThread<T>(execute: () -> T) -> T {
     if Thread.isMainThread {
         return execute()
     }
@@ -48,7 +48,7 @@ public final class ErrorLog {
             return {}
         }()
         
-        private init(error: Error, level: ErrorLevel) {
+        fileprivate init(error: Error, level: ErrorLevel) {
             self.error = error
             self.level = level
         }
