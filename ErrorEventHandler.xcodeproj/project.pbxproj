@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D92BEC481D68931C00F6AB09 /* ErrorEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92BEC471D68931C00F6AB09 /* ErrorEventHandler.swift */; };
+		D92BEC4A1D68934600F6AB09 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92BEC491D68934600F6AB09 /* Action.swift */; };
+		D92BEC4C1D68938500F6AB09 /* ErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92BEC4B1D68938500F6AB09 /* ErrorLog.swift */; };
+		D92BEC501D6893B000F6AB09 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92BEC4E1D6893B000F6AB09 /* RxCocoa.framework */; };
+		D92BEC511D6893B000F6AB09 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92BEC4F1D6893B000F6AB09 /* RxSwift.framework */; };
 		D9C7AC221D6835BE00D171AA /* ErrorEventHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C7AC181D6835BE00D171AA /* ErrorEventHandler.framework */; };
 		D9C7AC271D6835BE00D171AA /* ErrorEventHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C7AC261D6835BE00D171AA /* ErrorEventHandlerTests.swift */; };
 		D9C7AC291D6835BE00D171AA /* ErrorEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D9C7AC1B1D6835BE00D171AA /* ErrorEventHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +28,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D92BEC471D68931C00F6AB09 /* ErrorEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorEventHandler.swift; sourceTree = "<group>"; };
+		D92BEC491D68934600F6AB09 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		D92BEC4B1D68938500F6AB09 /* ErrorLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorLog.swift; sourceTree = "<group>"; };
+		D92BEC4E1D6893B000F6AB09 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		D92BEC4F1D6893B000F6AB09 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		D9C7AC181D6835BE00D171AA /* ErrorEventHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ErrorEventHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C7AC1B1D6835BE00D171AA /* ErrorEventHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorEventHandler.h; sourceTree = "<group>"; };
 		D9C7AC1C1D6835BE00D171AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92BEC511D6893B000F6AB09 /* RxSwift.framework in Frameworks */,
+				D92BEC501D6893B000F6AB09 /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,11 +62,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D92BEC4D1D68939100F6AB09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D92BEC4E1D6893B000F6AB09 /* RxCocoa.framework */,
+				D92BEC4F1D6893B000F6AB09 /* RxSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D9C7AC0E1D6835BE00D171AA = {
 			isa = PBXGroup;
 			children = (
+				D9C7AC321D68384500D171AA /* Sources */,
 				D9C7AC1A1D6835BE00D171AA /* ErrorEventHandler */,
 				D9C7AC251D6835BE00D171AA /* ErrorEventHandlerTests */,
+				D92BEC4D1D68939100F6AB09 /* Frameworks */,
 				D9C7AC191D6835BE00D171AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +107,16 @@
 				D9C7AC281D6835BE00D171AA /* Info.plist */,
 			);
 			path = ErrorEventHandlerTests;
+			sourceTree = "<group>";
+		};
+		D9C7AC321D68384500D171AA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D92BEC471D68931C00F6AB09 /* ErrorEventHandler.swift */,
+				D92BEC491D68934600F6AB09 /* Action.swift */,
+				D92BEC4B1D68938500F6AB09 /* ErrorLog.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +181,7 @@
 				TargetAttributes = {
 					D9C7AC171D6835BE00D171AA = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					D9C7AC201D6835BE00D171AA = {
@@ -196,6 +230,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92BEC481D68931C00F6AB09 /* ErrorEventHandler.swift in Sources */,
+				D92BEC4A1D68934600F6AB09 /* Action.swift in Sources */,
+				D92BEC4C1D68938500F6AB09 /* ErrorLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,17 +357,23 @@
 		D9C7AC2D1D6835BE00D171AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ErrorEventHandler/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.sora0077.ErrorEventHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -338,11 +381,16 @@
 		D9C7AC2E1D6835BE00D171AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ErrorEventHandler/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -394,6 +442,7 @@
 				D9C7AC2E1D6835BE00D171AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D9C7AC2F1D6835BE00D171AA /* Build configuration list for PBXNativeTarget "ErrorEventHandlerTests" */ = {
 			isa = XCConfigurationList;
@@ -402,6 +451,7 @@
 				D9C7AC311D6835BE00D171AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
