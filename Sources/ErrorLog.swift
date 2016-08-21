@@ -83,8 +83,10 @@ public final class ErrorLog {
         }
         let isEmpty = queue.isEmpty
         defer {
-            if isEmpty {
-                dequeue()?.resolved()
+            DispatchQueue.main.async {
+                if isEmpty {
+                    _ = dequeue().map(ErrorLog._event.onNext)
+                }
             }
         }
         
