@@ -28,35 +28,37 @@ private func doOnMainThread<T>(execute: () -> T) -> T {
     if Thread.isMainThread {
         return execute()
     }
-    var ret: T!
-    DispatchQueue.main.sync {
-        ret = execute()
-    }
-    return ret
+    return DispatchQueue.main.sync(execute: execute)
 }
 
 
 public final class ErrorLog {
     
     public final class Event {
+        enum State {
+            case waiting, running, done
+        }
         public let error: Error
         public let level: ErrorLevel
         public let errorAt = Date()
+        fileprivate var state: State
         
         private lazy var mark: () -> Void = {
-            _ = ErrorLog.dequeue().map(ErrorLog._event.onNext)
+            DispatchQueue.main.async {
+                self.state = .done
+                _ = ErrorLog.dequeue()
+                ErrorLog.nextRun()
+            }
             return {}
         }()
         
         fileprivate init(error: Error, level: ErrorLevel) {
             self.error = error
             self.level = level
+            self.state = .waiting
         }
         
         public func resolved() {
-            guard doOnMainThread(execute: self.resolved()) else {
-                return
-            }
             mark()
         }
     }
@@ -77,6 +79,13 @@ public final class ErrorLog {
         }
     }
     
+    private static func nextRun() {
+        if let event = queue.first, event.state == .waiting {
+            event.state = .running
+            _event.onNext(event)
+        }
+    }
+    
     public static func enqueue(error: Swift.Error? = nil, with errorType: Error.Type, level: ErrorLevel) {
         guard doOnMainThread(execute: self.enqueue(error: error, with: errorType, level: level)) else {
             return
@@ -85,7 +94,7 @@ public final class ErrorLog {
         defer {
             DispatchQueue.main.async {
                 if isEmpty {
-                    _ = dequeue().map(ErrorLog._event.onNext)
+                    nextRun()
                 }
             }
         }
