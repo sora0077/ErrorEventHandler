@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 
 
 private func doOnMainThread(async: Bool = true, execute: @autoclosure @escaping  () -> Void) -> Bool {
@@ -64,12 +62,7 @@ public final class ErrorLog {
     }
     
     private static var queue: ArraySlice<Event> = []
-    
-    private static let _event = PublishSubject<Event>()
-    public private(set) static var event: Driver<Event> = _event.asDriver { error in
-        _ = error
-        fatalError()
-    }
+    private static var closure: (Event) -> Void = { _ in }
     
     private init() {}
     
@@ -82,8 +75,12 @@ public final class ErrorLog {
     private static func nextRun() {
         if let event = queue.first, event.state == .waiting {
             event.state = .running
-            _event.onNext(event)
+            closure(event)
         }
+    }
+    
+    public static func observe(_ closure: @escaping (Event) -> Void) {
+        self.closure = closure
     }
     
     public static func enqueue(error: Swift.Error? = nil, with errorType: Error.Type, level: ErrorLevel) {
